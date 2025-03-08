@@ -1,0 +1,82 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    id 'com.google.devtools.ksp'
+}
+
+android {
+    namespace 'com.example.opendatajabar'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.example.opendatajabar"
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+    buildFeatures {
+        compose true
+    }
+}
+
+dependencies {
+
+    // Core libraries
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.activity.compose
+
+    // Jetpack Compose & Material3
+    implementation libs.ui
+    implementation libs.material3
+    implementation libs.ui.tooling.preview
+    implementation libs.androidx.runtime.livedata
+    debugImplementation libs.ui.tooling
+
+    // Material3 tambahan
+    implementation "androidx.compose.material3:material3:1.2.0"
+
+
+    // Navigation Compose
+    implementation libs.androidx.navigation.compose
+    implementation "androidx.navigation:navigation-compose:2.7.3"
+
+    // Room Database
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
+    ksp libs.androidx.room.compiler
+
+    // Animation with Jetpack Compose
+    implementation "androidx.compose.animation:animation:1.5.1"
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // OkHttp
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+
+    // Lifecycle ViewModel & LiveData
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.2'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2"
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
+}
